@@ -1,0 +1,49 @@
+.Header h1,
+h2 {
+  margin-bottom: 3px;
+}
+
+.Header h5 {
+  margin-top: 15px;
+}
+
+.Header h6 {
+  margin-top: 5px;
+}
+
+.Header small {
+  display: block;
+  margin-top: 0;
+}
+
+.Header img {
+  display: block;
+  margin: 0 auto;
+}
+
+.Header a {
+  text-decoration: none;
+}
+
+.Header .city {
+  margin-top: 5px;
+  text-transform: uppercase;
+}
+
+.Header .description {
+  margin-bottom: 0;
+  text-transform: capitalize;
+}
+
+.Header .units {
+  font-size: 14px;
+  position: relative;
+  top: -13px;
+  left: 7px;
+}
+
+.Header .units .active {
+  color: #ffcc99;
+  cursor: default;
+  font-weight: bold;
+}

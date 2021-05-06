@@ -1,0 +1,8 @@
+.Footer {
+  display: block;
+  margin: 20px auto;
+}
+
+.Footer a {
+  text-decoration: none;
+}

@@ -1,0 +1,8 @@
+.Weather {
+  background-image: url("https://www.thurrott.com/wp-content/uploads/sites/2/2015/08/win10sr1.jpg");
+  border: 1px solid #8db1d3;
+  border-radius: 5px;
+  color: #ffcc99;
+  max-width: 700px;
+  padding: 20px;
+}
