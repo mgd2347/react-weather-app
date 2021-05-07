@@ -4,7 +4,7 @@ import "./Header.css";
 export default function Header() {
   let weatherData = {
     city: "Lisbon, Pt",
-    date: "Sun 14, Mar 23:00",
+    date: "Fri 30, Mar 23:00",
     description: "Clear Sky",
     imgUrl: "https://openweathermap.org/img/wn/01n@2x.png",
     imgAlt: "clear sky",
