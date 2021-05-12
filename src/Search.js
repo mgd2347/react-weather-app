@@ -13,7 +13,7 @@ export default function Search() {
             autoComplete="off"
             type="search"
             className="form-control"
-            placeHolder="Search city..."
+            placeholder="Search city..."
             aria-label="Search"
             aria-describedby="addon-wrapping"
           />
