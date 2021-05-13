@@ -2,7 +2,7 @@ import React from "react";
 import "./Search.css";
 
 export default function Search() {
-   return (
+  return (
     <div className="Search">
       <form>
         <div className="input-group flex-nowrap">
