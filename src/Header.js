@@ -1,40 +1,17 @@
 import React, { useState } from "react";
 import axios from "axios";
+import Date from "./Date";
 import "./Header.css";
 
 export default function Header() {
-  const [loaded, setLoaded] = useState(false);
-  const [weatherData, setWeatherData] = useState({});
-  let now = new Date();
+  const [weatherData, setWeatherData] = useState({ loaded: false });
   
-  function formatHours(timestamp) {
-    let date = new Date(timestamp);
-    let hours = date.getHours();
-    if (hours < 10) {
-      hours = `0${hours}`;
-    }
-    let minutes = date.getMinutes();
-    if (minutes < 10) {
-      minutes = `0${minutes}`;
-    }
-    return `${hours}:${minutes}`;
-  }
-  function formatDate(timestamp) {
-    let date = new Date(timestamp);
-
-    let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
-    let weekDay = days[date.getDay()];
-    let day = date.getDate();
-    let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-    let month = months[date.getMonth()];
-    
-    let fullDate = `${weekDay} ${day}, ${month} ${formatHours(timestamp)}`;
-    return (fullDate);
-  }
   function displayHeader(response) {
+    console.log(response.data.dt * 1000);
     setWeatherData({
+      loaded: true,
       city: `${response.data.name}, ${response.data.sys.country}`,
-      date: formatDate(now),
+      date: new Date(response.data.dt * 1000),
       description: response.data.weather[0].description,
       imgUrl: `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`,
       imgAlt: response.data.weather[0].description,
@@ -43,13 +20,12 @@ export default function Header() {
       min: response.data.main.temp_min,
       feelsLike: response.data.main.feels_like
     })
-    setLoaded(true);
   }
-  if (loaded) {
+  if (weatherData.loaded) {
     return (
       <div className="Header">
         <h1 className="city">{weatherData.city}</h1>
-        <small>{weatherData.date}</small>
+        <Date date={weatherData.date} />
         <h5 className="description">{weatherData.description}</h5>
         <h2>
           <img src={weatherData.imgUrl} alt={weatherData.imgAlt} />
