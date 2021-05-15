@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import Date from "./Date";
+import FormattedDate from "./FormattedDate";
 import "./Header.css";
 
 export default function Header() {
@@ -25,7 +25,7 @@ export default function Header() {
     return (
       <div className="Header">
         <h1 className="city">{weatherData.city}</h1>
-        <Date date={weatherData.date} />
+        <FormattedDate date={weatherData.date} />
         <h5 className="description">{weatherData.description}</h5>
         <h2>
           <img src={weatherData.imgUrl} alt={weatherData.imgAlt} />

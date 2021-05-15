@@ -3,8 +3,7 @@ import axios from "axios";
 import "./Conditions.css";
 
 export default function Conditions() {
-  const [loaded, setLoaded] = useState(false);
-  const [weatherConditions, setWeatherConditions] = useState({});
+  const [weatherConditions, setWeatherConditions] = useState({ loaded:false });
   
   function formatHours(timestamp) {
     let date = new Date(timestamp);
@@ -20,16 +19,16 @@ export default function Conditions() {
   }
   function displayWeatherConditions(response) {
     setWeatherConditions({
+      loaded: true,
       humidity: response.data.main.humidity,
       wind: Math.round(response.data.wind.speed * 3.6),
       visibility: response.data.visibility / 1000,
       sunrise: formatHours(response.data.sys.sunrise * 1000),
       sunset: formatHours(response.data.sys.sunset * 1000)
     })
-    setLoaded(true);
   }
   
-  if (loaded) {
+  if (weatherConditions.loaded) {
     return (
       <ul className="Conditions">
         <li>
@@ -58,5 +57,4 @@ export default function Conditions() {
       "Loading..."
     );
   }
-
 }

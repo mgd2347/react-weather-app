@@ -1,7 +1,7 @@
 import React from "react";
-import "./Date.css";
+import "./FormattedDate.css";
 
-export default function Date(props) {
+export default function FormattedDate(props) {
   console.log(props.date);
   let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
   let weekDay = days[props.date.getDay()];
@@ -17,7 +17,7 @@ export default function Date(props) {
     minutes = `0${minutes}`
   }
   return (
-    <div className="Date">
+    <div className="FormattedDate">
       {weekDay} {day}, {month} {hours}:{minutes}
     </div>
   );
