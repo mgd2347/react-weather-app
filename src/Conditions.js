@@ -1,10 +1,7 @@
-import React, { useState } from "react";
-import axios from "axios";
+import React from "react";
 import "./Conditions.css";
 
-export default function Conditions() {
-  const [weatherConditions, setWeatherConditions] = useState({ loaded:false });
-  
+export default function Conditions(props) {
   function formatHours(timestamp) {
     let date = new Date(timestamp);
     let hours = date.getHours();
@@ -17,44 +14,24 @@ export default function Conditions() {
     }
     return `${hours}:${minutes}`;
   }
-  function displayWeatherConditions(response) {
-    setWeatherConditions({
-      loaded: true,
-      humidity: response.data.main.humidity,
-      wind: Math.round(response.data.wind.speed * 3.6),
-      visibility: response.data.visibility / 1000,
-      sunrise: formatHours(response.data.sys.sunrise * 1000),
-      sunset: formatHours(response.data.sys.sunset * 1000)
-    })
-  }
   
-  if (weatherConditions.loaded) {
-    return (
-      <ul className="Conditions">
-        <li>
-          Humidity: <span>{weatherConditions.humidity}</span>%
-        </li>
-        <li>
-          Wind: <span>{weatherConditions.wind}</span> km/h
-        </li>
-        <li>
-          Visibility: <span>{weatherConditions.visibility}</span> km
-        </li>
-        <li>
-          Sunrise: <span>{weatherConditions.sunrise}</span>
-        </li>
-        <li>
-          Sunset: <span>{weatherConditions.sunset}</span>
-        </li>
-      </ul>
-    );  
-  } else {
-    const apiKey = "6f57e84bdcf65c7e46537056925d0c97";
-    let city = `Lisbon`;
-    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
-    axios.get(apiUrl).then(displayWeatherConditions);
-    return (
-      "Loading..."
-    );
-  }
+  return (
+    <ul className="Conditions">
+      <li>
+        Humidity: <span>{props.conditionsData.humidity}</span>%
+      </li>
+      <li>
+        Wind: <span>{props.conditionsData.wind}</span> km/h
+      </li>
+      <li>
+        Visibility: <span>{props.conditionsData.visibility}</span> km
+      </li>
+      <li>
+        Sunrise: <span>{formatHours(props.conditionsData.sunrise)}</span>
+      </li>
+      <li>
+        Sunset: <span>{formatHours(props.conditionsData.sunset)}</span>
+      </li>
+    </ul>
+  );
 }

@@ -1,31 +1,93 @@
-import React from "react";
+import React, { useState } from "react";
+import axios from "axios";
 import Header from "./Header";
-import Search from "./Search";
 import Conditions from "./Conditions";
 import Forecast from "./Forecast";
 import "./Weather.css";
 
-export default function Weather() {
-  return (
-    <div className="Weather">
-      <div className="row">
-        <div className="col-6">
-          <Header />
+export default function Weather(props) {
+  const [weatherData, setWeatherData] = useState({loaded: false})
+  const [city, setCity] = useState(props.defaultCity);
+  function handleResponse(response) {
+    setWeatherData({
+      loaded: true,
+      city: `${response.data.name}, ${response.data.sys.country}`,
+      date: new Date(response.data.dt * 1000),
+      description: response.data.weather[0].description,
+      imgUrl: `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`,
+      imgAlt: response.data.weather[0].description,
+      temp: response.data.main.temp,
+      max: response.data.main.temp_max,
+      min: response.data.main.temp_min,
+      feelsLike: response.data.main.feels_like,
+      humidity: response.data.main.humidity,
+      wind: Math.round(response.data.wind.speed * 3.6),
+      visibility: response.data.visibility / 1000,
+      sunrise: response.data.sys.sunrise * 1000,
+      sunset: response.data.sys.sunset * 1000
+    })
+  }
+  function search() {
+    const apiKey = "6f57e84bdcf65c7e46537056925d0c97";
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+    axios.get(apiUrl).then(handleResponse);
+  }
+  function handleSubmit(event) {
+    event.preventDefault();
+    search();
+  }
+  function handleCityInput(event) {
+    setCity(event.target.value);
+  }
+
+  if (weatherData.loaded) {
+    return (
+      <div className="Weather">
+        <div className="row">
+          <div className="col-6">
+            <Header headerData={weatherData} />
+          </div>
+          <div className="col-6">
+            <div className="Search">
+              <form onSubmit={handleSubmit}>
+                <div className="input-group flex-nowrap">
+                  <span className="input-group-text">
+                    <i className="fas fa-search search-icon"></i>
+                  </span>
+                  <input
+                    autoComplete="off"
+                    type="search"
+                    className="form-control"
+                    placeholder="Search city..."
+                    aria-label="Search"
+                    aria-describedby="addon-wrapping"
+                    onChange={handleCityInput}
+                  />
+                  <input type="submit" value="Search" className="button" />
+                </div>
+              </form>
+              <button className="button current-location">Current location</button>
+            </div>
+            <Conditions conditionsData={weatherData} />
+          </div>
         </div>
-        <div className="col-6">
-          <Search />
-          <Conditions />
+        <hr />
+        <div className="row">
+          <Forecast hour="00:00" temp={14} defaultCity={props.defaultCity} />
+          <Forecast hour="03:00" temp={13} defaultCity={props.defaultCity} />
+          <Forecast hour="06:00" temp={12} defaultCity={props.defaultCity} />
+          <Forecast hour="09:00" temp={15} defaultCity={props.defaultCity} />
+          <Forecast hour="12:00" temp={21} defaultCity={props.defaultCity} />
+          <Forecast hour="15:00" temp={19} defaultCity={props.defaultCity} />
         </div>
       </div>
-      <hr />
-      <div className="row">
-        <Forecast hour="00:00" temp={14} />
-        <Forecast hour="03:00" temp={13} />
-        <Forecast hour="06:00" temp={12} />
-        <Forecast hour="09:00" temp={15} />
-        <Forecast hour="12:00" temp={21} />
-        <Forecast hour="15:00" temp={19} />
+    );
+  } else {
+    search();
+    return (
+      <div className="Weather">
+        Loading...
       </div>
-    </div>
-  );
+    )
+  }
 }

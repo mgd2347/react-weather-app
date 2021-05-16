@@ -6,3 +6,29 @@
   max-width: 700px;
   padding: 20px;
 }
+
+.Weather .Search form {
+  box-shadow: 2px 5px 8px rgba(37, 39, 90, 0.1);
+  color: #0e2645;
+  margin-top: 15px;
+}
+
+.Weather .Search button {
+  color: #0e2645;
+  margin-top: 18px;
+  padding: 5px 10px;
+}
+
+.Weather .Search button:hover {
+  box-shadow: 2px 5px 8px rgba(37, 39, 90, 0.1);
+}
+
+.Weather .Search .button {
+  background: #e9ecef;
+  border: 1px solid #ced4db;
+  border-radius: 4px;
+}
+
+.Weather .Search .current-location {
+  margin-top: 35px;
+}
