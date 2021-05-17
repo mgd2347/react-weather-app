@@ -1,5 +1,6 @@
 import React from "react";
 import FormattedDate from "./FormattedDate";
+import WeatherIcon from "./WeatherIcon";
 import "./Header.css";
 
 export default function Header(props) {
@@ -9,8 +10,8 @@ export default function Header(props) {
       <FormattedDate date={props.headerData.date} />
       <h5 className="description">{props.headerData.description}</h5>
       <h2>
-        <img src={props.headerData.imgUrl} alt={props.headerData.imgAlt} />
-        <span>{Math.round(props.headerData.temp)}</span>°
+        <WeatherIcon code={props.headerData.icon} />
+        <span className="temp">{Math.round(props.headerData.temp)}</span>°
         <span className="units">
           <a href="/" className="active">
             C

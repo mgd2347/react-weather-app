@@ -1,18 +1,16 @@
 import React from "react";
+import WeatherIcon from "./WeatherIcon";
 import "./Forecast.css";
 
-export default function Forecast({ hour, temp }) {
+export default function Forecast(props) {
   return (
     <div className="Forecast col-2">
       <ul>
-        <li>{hour}</li>
+        <li>{props.hour}</li>
         <li>
-          <img
-            src="https://openweathermap.org/img/wn/03d@2x.png"
-            alt="scattered clouds"
-          />
+          <WeatherIcon code={props.icon}/>
         </li>
-        <li>{temp}°C</li>
+        <li>{props.temp}°C</li>
         <li>Clouds</li>
       </ul>
     </div>

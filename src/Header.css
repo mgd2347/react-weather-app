@@ -16,9 +16,9 @@ h2 {
   margin-top: 0;
 }
 
-.Header img {
+.Header canvas {
   display: block;
-  margin: 0 auto;
+  margin: 0 auto 5px;
 }
 
 .Header a {
@@ -31,7 +31,6 @@ h2 {
 }
 
 .Header .description {
-  margin-bottom: 0;
   text-transform: capitalize;
 }
 

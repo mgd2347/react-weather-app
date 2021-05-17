@@ -14,8 +14,7 @@ export default function Weather(props) {
       city: `${response.data.name}, ${response.data.sys.country}`,
       date: new Date(response.data.dt * 1000),
       description: response.data.weather[0].description,
-      imgUrl: `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`,
-      imgAlt: response.data.weather[0].description,
+      icon: response.data.weather[0].icon,
       temp: response.data.main.temp,
       max: response.data.main.temp_max,
       min: response.data.main.temp_min,
@@ -73,12 +72,12 @@ export default function Weather(props) {
         </div>
         <hr />
         <div className="row">
-          <Forecast hour="00:00" temp={14} defaultCity={props.defaultCity} />
-          <Forecast hour="03:00" temp={13} defaultCity={props.defaultCity} />
-          <Forecast hour="06:00" temp={12} defaultCity={props.defaultCity} />
-          <Forecast hour="09:00" temp={15} defaultCity={props.defaultCity} />
-          <Forecast hour="12:00" temp={21} defaultCity={props.defaultCity} />
-          <Forecast hour="15:00" temp={19} defaultCity={props.defaultCity} />
+          <Forecast hour="00:00" temp={14} icon={weatherData.icon} />
+          <Forecast hour="03:00" temp={13} icon={weatherData.icon} />
+          <Forecast hour="06:00" temp={12} icon={weatherData.icon} />
+          <Forecast hour="09:00" temp={15} icon={weatherData.icon} />
+          <Forecast hour="12:00" temp={21} icon={weatherData.icon} />
+          <Forecast hour="15:00" temp={19} icon={weatherData.icon} />
         </div>
       </div>
     );
