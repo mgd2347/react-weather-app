@@ -18,7 +18,7 @@ export default function WeatherTemp(props) {
     return (
       <div className="WeatherTemp">
         <h2>
-          <span >
+          <span>
             {Math.round(props.celsius)}°
           </span>
           <span className="units">
@@ -28,27 +28,30 @@ export default function WeatherTemp(props) {
             |<a href="/" onClick={showFahrenheit}> F</a>
           </span>
         </h2>
-        
-        <div>
+        <div className="extraTemps">
           <strong>{Math.round(props.celsiusMax)}° ·</strong> {Math.round(props.celsiusMin)}°
+          <br />
+          Feels like {Math.round(props.celsiusFeelsLike)}°
         </div>
-        <h6>Feels like {Math.round(props.celsiusFeelsLike)}°</h6>
       </div>
     );
   } else {
     return (
       <div className="WeatherTemp">
-        <span >
-          {convertToFahrenheit(props.celsius)}°
-        </span>
-        <span className="units">
-          <a href="/" onClick={showCelsius}>
-            C
-          </a>{" "}
-          |<span className="active"> F</span>
-        </span>
+        <h2>
+          <span>
+            {convertToFahrenheit(props.celsius)}°
+          </span>
+          <span className="units">
+            <a href="/" onClick={showCelsius}>
+              C
+            </a>{" "}
+            |<span className="active"> F</span>
+          </span>
+        </h2>
         <div className="extraTemps">
           <strong>{convertToFahrenheit(props.celsiusMax)}° ·</strong> {convertToFahrenheit(props.celsiusMin)}°
+          <br />
           Feels like {convertToFahrenheit(props.celsiusFeelsLike)}°
         </div>
       </div>
