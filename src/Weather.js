@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import axios from "axios";
 import Header from "./Header";
 import Conditions from "./Conditions";
-import Forecast from "./Forecast";
+import HourlyForecast from "./HourlyForecast";
+import DailyForecast from "./DailyForecast";
 import "./Weather.css";
 
 export default function Weather(props) {
@@ -81,16 +82,11 @@ export default function Weather(props) {
           </div>
         </div>
         <hr />
-        <div className="row">
-          <Forecast hour="00:00" temp={14} icon={weatherData.icon} />
-          <Forecast hour="03:00" temp={13} icon={weatherData.icon} />
-          <Forecast hour="06:00" temp={12} icon={weatherData.icon} />
-          <Forecast hour="09:00" temp={15} icon={weatherData.icon} />
-          <Forecast hour="12:00" temp={21} icon={weatherData.icon} />
-          <Forecast hour="15:00" temp={19} icon={weatherData.icon} />
-        </div>
+        <HourlyForecast />
+        <hr />
+        <DailyForecast />
       </div>
-    );
+    )
   } else {
     search();
     return (

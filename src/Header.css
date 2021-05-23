@@ -19,6 +19,7 @@ h2 {
 .Header canvas {
   display: block;
   margin: 0 auto 5px;
+  width: 25%;
 }
 
 .Header a {
