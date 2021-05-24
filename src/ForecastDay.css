@@ -1,0 +1,27 @@
+.ForecastDay {
+  font-size: 14px;
+}
+
+.ForecastDay ul {
+  list-style: none;
+  padding: 0;
+}
+
+.ForecastDay li {
+  margin: 2px auto;
+}
+
+.ForecastDay canvas {
+  display: block;
+  margin: 0 auto;
+  width: 80%;
+}
+
+.ForecastDay .min {
+  opacity: 0.7;
+}
+
+.ForecastDay .daily-description {
+  font-size: 14px;
+  text-transform: capitalize;
+}

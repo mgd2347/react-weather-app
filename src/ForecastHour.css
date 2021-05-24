@@ -1,0 +1,22 @@
+.ForecastHour {
+  font-size: 14px;
+}
+
+.ForecastHour ul {
+  list-style: none;
+  padding: 0;
+}
+
+.ForecastHour li {
+  margin: 2px auto;
+}
+
+.ForecastHour canvas {
+  display: block;
+  margin: 0 auto;
+  width: 80%;
+}
+
+.ForecastHour .hourly-description {
+  text-transform: capitalize;
+}
