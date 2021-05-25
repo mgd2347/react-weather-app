@@ -16,7 +16,7 @@ export default function ForecastDay(props) {
 
 
   return (
-    <div className="ForecastDay col-2">
+    <div className="ForecastDay">
       <ul>
         <li className="day">{day()}</li>
         <li>

@@ -17,7 +17,7 @@ export default function ForecastHour(props) {
     return `${hours}:${minutes}`
   }
   return (
-    <div className="ForecastHour col-2">
+    <div className="ForecastHour">
       <ul>
         <li>{hour()}</li>
         <li>
